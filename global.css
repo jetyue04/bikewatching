@@ -5,6 +5,91 @@ body {
   max-width: 80em;
   min-height: 100vh;
   box-sizing: border-box;
-  margin: auto;
+  margin: 0;
   padding: 1em;
+}
+
+html, body {
+    margin: 0;
+    padding: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+     /* align-items: center; */
+  }
+
+h1 {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+     
+#map {
+    width: 100%;    /* Adjust width to your desired size */
+    height: 100%;   /* Adjust height to your desired size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+#map svg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    /* background: yellow; */
+    pointer-events: none;
+    /* opacity: 50%; */
+}
+
+#map circle,
+.legend div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+svg circle {
+    pointer-events: auto;
+    fill: var(--color);
+}
+
+label {
+    display: flex;
+    flex-direction: column; /* Stack the slider and time vertically */
+    align-items: flex-end; /* Align the slider and time to the right */
+}
+
+input[type="range"] {
+    width: 200px; /* Set width for the slider */
+}
+
+time {
+    display: block; /* Ensure it’s on its own line */
+    margin-top: 0.5em; /* Space between slider and time */
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+    color: #888; /* Lighter color for "Any time" */
+}
+
+.legend {
+    display: flex;
+    margin-block: 1em;
+}
+
+.legend div {
+    padding: 0.5em;
+    background-color: var(--color); /* This uses the --color variable dynamically */
+    color: white;
+    border-radius: 4px;
+    flex: 1; /* Distribute space evenly */
+    text-align: center;
 }
